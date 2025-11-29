@@ -1,0 +1,74 @@
+{
+  "tips": [
+    "💧 Remember to stay hydrated! Drink a glass of water right now.",
+    "🌅 Start your day with 5 minutes of stretching or light movement.",
+    "📵 Take a 10-minute break from screens every hour.",
+    "🌬️ Practice deep breathing: Inhale for 4, hold for 4, exhale for 6.",
+    "📝 Write down 3 things you're grateful for today.",
+    "🚶 Take a short walk outside, even just 5 minutes helps.",
+    "😴 Aim for 7-9 hours of sleep tonight.",
+    "🍎 Eat something nourishing today that makes you feel good.",
+    "🤝 Reach out to a friend or loved one today.",
+    "🎵 Listen to your favorite uplifting song.",
+    "🧘 Try a 5-minute meditation or mindfulness exercise.",
+    "📚 Read something that inspires or relaxes you.",
+    "🎨 Do something creative, even if just for a few minutes.",
+    "🌱 Spend time with nature, even looking at plants helps.",
+    "💪 Celebrate one small win from today.",
+    "🛁 Take a relaxing bath or shower.",
+    "📖 Journal about your feelings for 10 minutes.",
+    "🎯 Set one small, achievable goal for tomorrow.",
+    "☀️ Get some sunlight exposure during the day.",
+    "🧹 Tidy up one small space in your environment.",
+    "🍵 Make yourself a cup of tea or your favorite warm beverage.",
+    "📱 Call someone who makes you smile.",
+    "🌟 Practice positive self-talk today.",
+    "🎭 Do something playful or fun, even briefly.",
+    "💌 Write yourself a kind note.",
+    "🏃 Move your body in a way that feels good.",
+    "🧩 Take a break from problem-solving and do something mindless.",
+    "🎶 Create a playlist of songs that boost your mood.",
+    "🌈 Notice and appreciate colors around you today.",
+    "🤗 Give yourself a hug or practice self-compassion."
+  ],
+  "categories": {
+    "physical": [
+      "💧 Remember to stay hydrated! Drink a glass of water right now.",
+      "🌅 Start your day with 5 minutes of stretching or light movement.",
+      "🚶 Take a short walk outside, even just 5 minutes helps.",
+      "😴 Aim for 7-9 hours of sleep tonight.",
+      "🍎 Eat something nourishing today that makes you feel good.",
+      "🛁 Take a relaxing bath or shower.",
+      "☀️ Get some sunlight exposure during the day.",
+      "🏃 Move your body in a way that feels good."
+    ],
+    "mental": [
+      "🌬️ Practice deep breathing: Inhale for 4, hold for 4, exhale for 6.",
+      "📝 Write down 3 things you're grateful for today.",
+      "🧘 Try a 5-minute meditation or mindfulness exercise.",
+      "📖 Journal about your feelings for 10 minutes.",
+      "🎯 Set one small, achievable goal for tomorrow.",
+      "🌟 Practice positive self-talk today.",
+      "💌 Write yourself a kind note.",
+      "🤗 Give yourself a hug or practice self-compassion."
+    ],
+    "social": [
+      "🤝 Reach out to a friend or loved one today.",
+      "📱 Call someone who makes you smile."
+    ],
+    "creative": [
+      "🎵 Listen to your favorite uplifting song.",
+      "📚 Read something that inspires or relaxes you.",
+      "🎨 Do something creative, even if just for a few minutes.",
+      "🎭 Do something playful or fun, even briefly.",
+      "🎶 Create a playlist of songs that boost your mood."
+    ],
+    "environmental": [
+      "📵 Take a 10-minute break from screens every hour.",
+      "🌱 Spend time with nature, even looking at plants helps.",
+      "🧹 Tidy up one small space in your environment.",
+      "🍵 Make yourself a cup of tea or your favorite warm beverage.",
+      "🌈 Notice and appreciate colors around you today."
+    ]
+  }
+}
