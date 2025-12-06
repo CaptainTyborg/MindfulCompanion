@@ -1,6 +1,11 @@
 import streamlit as st
 import os
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except Exception:
+    # Allow app to start even if python-dotenv is not installed in the environment.
+    def load_dotenv(*args, **kwargs):
+        return None
 from datetime import datetime
 import plotly.express as px
 import plotly.graph_objects as go
