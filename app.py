@@ -7,8 +7,15 @@ except Exception:
     def load_dotenv(*args, **kwargs):
         return None
 from datetime import datetime
-import plotly.express as px
-import plotly.graph_objects as go
+try:
+    import plotly.express as px
+    import plotly.graph_objects as go
+    PLOTLY_AVAILABLE = True
+except Exception:
+    px = None
+    go = None
+    PLOTLY_AVAILABLE = False
+    print("Plotly not available - charts will be disabled")
 
 # Import backend modules
 from backend.response_generator import ResponseGenerator
@@ -373,24 +380,30 @@ if 'show_dashboard' in st.session_state and st.session_state.show_dashboard:
         st.subheader("Emotion Distribution")
         emotion_dist = mood_stats.get('emotion_distribution', {})
         if emotion_dist:
-            fig = px.pie(
-                names=list(emotion_dist.keys()),
-                values=list(emotion_dist.values()),
-                title="Emotions Over Last 30 Days"
-            )
-            st.plotly_chart(fig, use_container_width=True)
+            if PLOTLY_AVAILABLE and px is not None:
+                fig = px.pie(
+                    names=list(emotion_dist.keys()),
+                    values=list(emotion_dist.values()),
+                    title="Emotions Over Last 30 Days"
+                )
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("Emotion distribution chart unavailable (plotly not installed)")
     
     with col2:
         st.subheader("Sentiment Breakdown")
         sentiment_dist = mood_stats.get('sentiment_distribution', {})
         if sentiment_dist:
-            fig = px.bar(
-                x=list(sentiment_dist.keys()),
-                y=list(sentiment_dist.values()),
-                title="Sentiment Distribution",
-                labels={'x': 'Sentiment', 'y': 'Count'}
-            )
-            st.plotly_chart(fig, use_container_width=True)
+            if PLOTLY_AVAILABLE and px is not None:
+                fig = px.bar(
+                    x=list(sentiment_dist.keys()),
+                    y=list(sentiment_dist.values()),
+                    title="Sentiment Distribution",
+                    labels={'x': 'Sentiment', 'y': 'Count'}
+                )
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("Sentiment distribution chart unavailable (plotly not installed)")
     
     # Insights
     st.markdown("---")
