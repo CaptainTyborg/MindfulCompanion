@@ -1,13 +1,22 @@
 import re
 from typing import Dict, Tuple
-from textblob import TextBlob
+try:
+    from textblob import TextBlob
+    HAS_TEXTBLOB = True
+except Exception:
+    HAS_TEXTBLOB = False
+
 import nltk
 
-# Download required NLTK data (run once)
+# Download required NLTK data (run once) if available
 try:
     nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt', quiet=True)
+except Exception:
+    try:
+        nltk.download('punkt', quiet=True)
+    except Exception:
+        # If download fails (offline environment), continue without it
+        pass
 
 class EmotionDetector:
     """
@@ -69,10 +78,36 @@ class EmotionDetector:
         
         text_lower = text.lower()
         
-        # Calculate sentiment using TextBlob
-        blob = TextBlob(text)
-        polarity = blob.sentiment.polarity  # -1 (negative) to 1 (positive)
-        subjectivity = blob.sentiment.subjectivity  # 0 (objective) to 1 (subjective)
+        # Calculate sentiment using TextBlob if available, otherwise use a lightweight fallback
+        if HAS_TEXTBLOB:
+            try:
+                blob = TextBlob(text)
+                polarity = blob.sentiment.polarity  # -1 (negative) to 1 (positive)
+                subjectivity = blob.sentiment.subjectivity  # 0 (objective) to 1 (subjective)
+            except Exception:
+                polarity = 0.0
+                subjectivity = 0.0
+        else:
+            # Fallback: simple polarity score based on keyword matching
+            positive_words = [
+                "happy", "joy", "good", "great", "wonderful", "amazing", "love",
+                "glad", "fantastic", "pleased", "excited", "grateful"
+            ]
+            negative_words = [
+                "sad", "depressed", "bad", "terrible", "awful", "hate", "angry",
+                "miserable", "lonely", "upset", "anxious", "worried"
+            ]
+
+            text_lower = text.lower()
+            pos_count = sum(1 for w in positive_words if w in text_lower)
+            neg_count = sum(1 for w in negative_words if w in text_lower)
+
+            if pos_count + neg_count == 0:
+                polarity = 0.0
+            else:
+                polarity = (pos_count - neg_count) / max(1, pos_count + neg_count)
+
+            subjectivity = 0.0
         
         # Count keyword matches for each emotion
         emotion_scores = {}
@@ -113,8 +148,8 @@ class EmotionDetector:
             "confidence": round(confidence, 2),
             "sentiment": sentiment,
             "intensity": intensity,
-            "polarity": round(polarity, 2),
-            "subjectivity": round(subjectivity, 2)
+            "polarity": round(float(polarity), 2),
+            "subjectivity": round(float(subjectivity), 2)
         }
     
     def _calculate_intensity(self, text: str, subjectivity: float) -> str:
